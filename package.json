@@ -1,0 +1,19 @@
+{
+  "name": "justinblocker",
+  "version": "1.0.0",
+  "description": "js blockchain",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node build/index.js"
+  },
+  "keywords": [
+    "blockchain"
+  ],
+  "author": "Einar Alexander Eymundsson",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^2.9.2",
+    "@types/crypto-js": "^3.1.41"
+  }
+}
