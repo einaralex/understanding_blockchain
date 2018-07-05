@@ -4,8 +4,9 @@
   "description": "js blockchain",
   "main": "index.ts",
   "scripts": {
-    "build": "tsc",
-    "start": "tsc && node build/index.js"
+    "build": "tslint && tsc",
+    "start": "tslint && tsc && node build/index.js",
+    "tslint": "tslint -c tslint.json -p tsconfig.json"
   },
   "keywords": [
     "blockchain"
