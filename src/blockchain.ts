@@ -1,21 +1,19 @@
 import Block from './block';
 export default class Blockchain {
 
-    //initialize the blockchain and add the genesisBlock
+    // initialize the blockchain and add the genesisBlock
     chain: any;
-    
+
     constructor () {
-        this.chain = [this.createGenesisBlock()]
+        this.chain = [this.createGenesisBlock()];
     }
 
-    createGenesisBlock = () => new Block(0, new Date() , '0'.repeat(64), ['0'],0);
+    createGenesisBlock = () => new Block( 0, new Date(), '0'.repeat(64), ['0'], 0);
 
     addBlock = (block: Block) => {
-        /*
-        this.chain.length === 0 
-            ? block.previousHash  = '0'.repeat(64)
-            : block.hash          = this.generateHash(block);
-        */
+        // this.chain.length === 0
+        //     ? block.previousHash  = '0'.repeat(64)
+        //     : block.hash          = this.generateHash(block);
         block.previousHash = this.getPreviousBlock().hash;
         block.hash = block.calculateHash();
         this.chain.push(block);
@@ -23,14 +21,12 @@ export default class Blockchain {
 
     isChainValid = () => {
 
-        for ( let b = 1; b < this.chain.length; b ++){
-            if (this.chain[b].hash !== this.chain[b].calculateHash())
-            {
-                return false
+        for ( let b = 1; b < this.chain.length; b++ ) {
+            if (this.chain[b].hash !== this.chain[b].calculateHash()) {
+                return false;
             }
-            if (this.chain[b].previousHash !== this.chain[b-1].hash)
-            {
-                return false
+            if (this.chain[b].previousHash !== this.chain[b - 1].hash) {
+                return false;
             }
         }
         // Object.keys(this.chain).forEach((b) => {
@@ -45,7 +41,7 @@ export default class Blockchain {
         //     //this.chain[b].hash !== this.chain[b].calculateHash() || false;
         //     //this.chain[b].previousHash !== this.chain[b-1] || false;
         // })
-        return true
+        return true;
     }
    /* generateNextBlock (transactions) {
 
