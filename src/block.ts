@@ -1,4 +1,4 @@
-import * as encode from 'crypto-js';
+import { SHA256 } from 'crypto-js';
 
 export default class Block {
 
@@ -18,18 +18,18 @@ export default class Block {
         this.transactions = transactions;
     }
 
-    addTransaction = (transaction: string) => this.transactions.push(transaction)
+    addTransaction = (transaction: string) => this.transactions.push(transaction);
 
     /**
      * Calculate hash for each block.
      * @return {string} A hash value calculated from the information of the block
      */
-    calculateHash = () => 
-        encode.SHA256(
-            this.index + 
+    calculateHash = () =>
+        SHA256(
+            this.index +
             this.previousHash +
             this.timestamp +
             this.nonce +
-            JSON.stringify(this.transactions) 
+            JSON.stringify(this.transactions)
         ).toString();
 }

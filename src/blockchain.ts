@@ -1,29 +1,24 @@
-//let Block = require('./block')
-import Block from './block'
-//import SHA256 from 'crypto-js/sha256';
-//var SHA256 = require("crypto-js/sha256");
+import Block from './block';
 export default class Blockchain {
 
     //initialize the blockchain and add the genesisBlock
     chain: any;
     
-    constructor ()  {
+    constructor () {
         this.chain = [this.createGenesisBlock()]
     }
 
-    createGenesisBlock = () => {
-        return new Block(0, new Date() , '0'.repeat(64), ['0'],0)
-    }
+    createGenesisBlock = () => new Block(0, new Date() , '0'.repeat(64), ['0'],0);
 
     addBlock = (block: Block) => {
         /*
         this.chain.length === 0 
             ? block.previousHash  = '0'.repeat(64)
-            : block.hash          = this.generateHash(block);*/
+            : block.hash          = this.generateHash(block);
+        */
         block.previousHash = this.getPreviousBlock().hash;
-        block.hash = block.calculateHash()
-        block.nonce = 0
-        this.chain.push(block)
+        block.hash = block.calculateHash();
+        this.chain.push(block);
     }
 
     isChainValid = () => {
