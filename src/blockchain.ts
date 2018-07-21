@@ -1,21 +1,26 @@
 import Block from './block';
 export default class Blockchain {
 
-    // initialize the blockchain and add the genesisBlock
+    // Initialize the blockchain and add the genesisBlock
     chain: any;
 
     constructor () {
-        this.chain = [this.createGenesisBlock()];
+        this.chain = [];
     }
 
-    createGenesisBlock = () => new Block( 0, new Date(), '0'.repeat(64), ['0'], 0);
+    createGenesisBlock = () => {
+        const index = 0;
+        const previousHash = '0'.repeat(64);
+        const transactions = ['Alice', 'Bob', '1BTC']; // TODO: (1) new Transaction(in,out,amount)
+        const nounce = 1234;
+
+        this.chain.push(new Block(index, new Date(), previousHash, transactions, nounce));
+    }
 
     addBlock = (block: Block) => {
-        // this.chain.length === 0
-        //     ? block.previousHash  = '0'.repeat(64)
-        //     : block.hash          = this.generateHash(block);
-        block.previousHash = this.getPreviousBlock().hash;
-        block.hash = block.calculateHash();
+        const previousBlock = this.chain[this.chain.length - 1];
+        block.previousHash = previousBlock.hash;
+
         this.chain.push(block);
     }
 
@@ -29,48 +34,6 @@ export default class Blockchain {
                 return false;
             }
         }
-        // Object.keys(this.chain).forEach((b) => {
-        //     if (this.chain[b].hash !== this.chain[b].calculateHash())
-        //     {
-        //         return false
-        //     }
-        //     if (this.chain[b].previousHash !== this.chain[b-1].hash)
-        //     {
-        //         return false
-        //     }
-        //     //this.chain[b].hash !== this.chain[b].calculateHash() || false;
-        //     //this.chain[b].previousHash !== this.chain[b-1] || false;
-        // })
         return true;
     }
-   /* generateNextBlock (transactions) {
-
-        let block = new Block()
-
-        //Blockheader :       Version(4)+hashPrevBlock(32)+hashMerkleRoot(32)+Time(4)+Bits(4)+Nonce(4)
-
-        transactions.forEach((transaction) => block.addTransaction(transaction));
-
-        let previousBlock   = this.getPreviousBlock()
-        block.index         = this.chain.length
-        block.previousHash  = previousBlock.hash
-        block.hash      = this.generateHash(block)
-
-        return block
-    }*/
-
-    /*generateRootHash (block)  {
-
-        let rootHash = block.calculateRootHash();
-
-        while (!rootHash.startsWith('0000')) {
-            block.nonce += 1
-            rootHash = block.calculateRootHash();
-        }
-        return rootHash
-    }*/
-
-    getPreviousBlock = () => this.chain[this.chain.length - 1];
-
-
 }
