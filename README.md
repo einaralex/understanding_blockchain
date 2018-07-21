@@ -23,3 +23,16 @@ yarn start
 | outDir: "build"       | Compiled JS files location               |
 | strict: true          | All strict type checking options enabled |
 | removeComments: true  | Remove comments from compiled JS         |
+
+
+(0) previous hash
+(0.1) is chain valid
+(0.2) Betri verkefnalista en þetta
+(1) Útfæra basic transactions. 
+(2) Setja upp Unit test -> fjarlægja harkóðaðar blokkir úr index. 
+(3) Útfæra nounce virkni.
+(4) tslint
+(5) Calculate blockheader
+
+
+
