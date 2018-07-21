@@ -5,7 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "build": "tslint && tsc",
-    "start": "tslint && tsc && node build/index.js",
+    "start": "tsc && node build/index.js",
+    "test": "jest",
     "tslint": "tslint -c tslint.json -p tsconfig.json"
   },
   "keywords": [
@@ -19,6 +20,26 @@
   },
   "devDependencies": {
     "@types/crypto-js": "^3.1.41",
-    "crypto-js": "^3.1.9-1"
+    "@types/jest": "^23.1.4",
+    "crypto-js": "^3.1.9-1",
+    "jest": "^23.3.0",
+    "ts-jest": "^23.0.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts)$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.json"
+      }
+    },
+    "testMatch": [
+      "**/__tests__/*.+(ts|js)"
+    ]
   }
 }
