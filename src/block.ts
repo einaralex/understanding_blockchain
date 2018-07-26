@@ -3,19 +3,19 @@ import { SHA256 } from 'crypto-js';
 export default class Block {
 
     index: number;              // The index of the current block in the chain.
-    timestamp: Date;            // When the block was created
+    timestamp: number;            // When the block was created
     previousHash: string;       // The hash of the previous block
     hash: string;               // The hash of the current block
     transactions: string[];     // Information stored on the chain
     nonce: number;              // 32-bit (4-byte) 'Numbers used only once', this number is incremented to find the secret hash which is used to sign the block.
 
-    constructor(index: number, timestamp: Date, previousHash: string, transactions: string[], nonce: number) {
+    constructor(index: number, timestamp: number, previousHash: string, transactions: string[], nonce: number) {
         this.index = index;
-        this.timestamp = timestamp;
+        this.timestamp = Date.now();
         this.previousHash = previousHash;
-        this.hash = this.calculateHash();
-        this.nonce = 0;
+        this.nonce = nonce;
         this.transactions = transactions;
+        this.hash = this.calculateHash();
     }
 
     addTransaction = (transaction: string) => this.transactions.push(transaction);

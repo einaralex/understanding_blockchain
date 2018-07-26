@@ -25,7 +25,6 @@ yarn start
 | removeComments: true  | Remove comments from compiled JS         |
 
 
-(0) previous hash
 (0.1) is chain valid
 (0.2) Betri verkefnalista en þetta
 (1) Útfæra basic transactions. 
